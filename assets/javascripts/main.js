@@ -62,12 +62,6 @@ var updatesUpdate = function updateUpdates() {
     .html(function(d, i) { return updatesData[i].body; });
 };
 
-/**
- * Update everything on the window resizing
- */
-$(window).resize(function() {
-  update();
-});
 
 /**
  * Initialise everything
@@ -76,6 +70,7 @@ var init = function init() {
   tabletopInit();
   pymChild.sendHeight()
 };
+
 
 /**
  * Update all of the things
@@ -86,6 +81,12 @@ var update = function update() {
   pymChild.sendHeight()
 };
 
-$(document).ready(function(){
+/**
+ * Update everything on the window resizing
+ */
+
+window.addEventListener("resize", update);
+
+document.addEventListener("DOMContentLoaded", function(){
   init();
 });
